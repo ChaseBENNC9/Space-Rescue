@@ -37,7 +37,7 @@ jobs:
         id: new_release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{steps.download.outputs.download-path}}.zip
+          #artifacts: ${{steps.download.outputs.download-path}}.zip
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
@@ -46,9 +46,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
-          upload_url: ${{ steps.new_release.outputs.upload_url}}/build
-          asset_path:  ${{steps.download.outputs.download-path}}
-          asset_name: build-${{ steps.tag_version.outputs.new_tag}}
+          upload_url: ${{ steps.new_release.outputs.upload_url}}
+          asset_path:  ${{steps.download.outputs.download-path}}.zip
+          asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
     name: Build my project ✨
