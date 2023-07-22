@@ -13,10 +13,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build
+          path: builds
       - name: ZIP Build
         uses: thedoctor0/zip-release@master
         with: 
+          type: zip
           filename: build.zip
+          path: ./builds/build
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
@@ -36,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: build.zip
+          asset_path: ./builds/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}
           asset_content_type: application/zip
   build:
@@ -72,4 +75,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build
-          path: build
+          path: builds
