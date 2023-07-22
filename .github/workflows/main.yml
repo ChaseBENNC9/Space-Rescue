@@ -25,8 +25,10 @@ jobs:
           filename: build.zip
           path: ${{steps.download.outputs.download-path}}
           directory: ${{steps.download.outputs.download-path}}
-      - name: echo link
-        run: echo ${{ steps.zip-release.outputs.download_url }}
+          
+      - name: List contents of the directory
+        run: ls ${{ steps.download.outputs.download-path }}
+
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
@@ -37,7 +39,6 @@ jobs:
         id: new_release
         uses: ncipollo/release-action@v1
         with:
-          #artifacts: ${{steps.download.outputs.download-path}}.zip
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
