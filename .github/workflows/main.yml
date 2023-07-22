@@ -36,8 +36,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: ./build.zip
-          asset_name: build-v${{ steps.tag_version.outputs.new_tag}}
+          asset_path: build.zip
+          asset_name: build-${{ steps.tag_version.outputs.new_tag}}
           asset_content_type: application/zip
   build:
     name: Build my project ✨
