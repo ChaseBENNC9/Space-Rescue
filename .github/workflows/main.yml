@@ -12,8 +12,7 @@ jobs:
     steps: 
       - uses: actions/download-artifact@v3
         with:
-          name: Build
-          path: build
+          name: build
       - name: ZIP Build
         uses: thedoctor0/zip-release@master
         with: 
