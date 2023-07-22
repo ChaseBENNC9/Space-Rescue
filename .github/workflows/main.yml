@@ -13,7 +13,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build
-          path: builds
+          path: build
       - name: ZIP Build
         uses: thedoctor0/zip-release@master
         with: 
@@ -75,4 +75,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build
-          path: builds
+          path: build
