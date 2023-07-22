@@ -11,15 +11,15 @@ jobs:
     needs: build
     steps: 
       - uses: actions/download-artifact@v3
+        id: download
         with:
-          name: build
           path: build
       - name: ZIP Build
         uses: thedoctor0/zip-release@master
         with: 
           type: zip
           filename: build.zip
-          path: ./build/build
+          path: ${{steps.download.outputs.download-path}}
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
@@ -30,6 +30,7 @@ jobs:
         id: new_release
         uses: ncipollo/release-action@v1
         with:
+          artifacts: ${{steps.download.outputs.download-path}}/build.zip 
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
@@ -39,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: ./builds/build.zip
+          asset_path: ${{steps.download.outputs.download-path}}/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}
           asset_content_type: application/zip
   build:
