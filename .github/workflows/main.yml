@@ -30,8 +30,15 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          artifacts: build.zip
-
+      - name: Upload to Github Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        with:
+          upload_url: ${{ steps.new_release.outputs.upload_url}}
+          asset_path: ./build.zip
+          asset_name: build-v${{ steps.tag_version.outputs.new_tag}}
+          asset_content_type: application/zip
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
