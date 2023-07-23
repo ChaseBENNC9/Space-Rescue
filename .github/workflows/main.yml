@@ -35,12 +35,13 @@ jobs:
         run: | 
           ls ${{steps.pwd_step.outputs.current_dir}}
       - name: Check if file exists
-        run: if test -e ${{steps.pwd_step.outputs.current_dir}}/build.zip then
-              echo "File exists"
-            else 
-              echo "Non existent file requested"
-            fi
-        id: check_file
+        run: |
+          if test -e /home/runner/work/Space-Rescue/Space-Rescue/build.zip; then
+            echo "File exists"
+          else
+            echo "Non existent file requested"
+          fi
+          id: check_file
 
         
       - uses: actions/checkout@v2
