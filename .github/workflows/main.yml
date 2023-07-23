@@ -49,11 +49,10 @@ jobs:
         id: check_file
       - name: list files in release folder
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
-      - name: Check if commit is part of a pull request
-        id: pr_check
+      - name: Get PR Body
+        id: pr_body
         #if: github.event_name == 'push' && github.event.pull_request
-        run: |
-          echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
+        run: echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
 
       - name: Bump version and push tag
         id: tag_version
@@ -67,7 +66,7 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.pr_check.outputs.pr_body }}
+          body: ${{ steps.pr_body.outputs.body }}
       - name: Upload to Github Release
         uses: actions/upload-release-asset@v1
         env:
