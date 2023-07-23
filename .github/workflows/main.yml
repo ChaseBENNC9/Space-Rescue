@@ -40,6 +40,8 @@ jobs:
             echo "File exists"
             mkdir -p release
             mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/build.zip
+            cd release
+            ls .
           else
             echo "Non existent file requested"
           fi
