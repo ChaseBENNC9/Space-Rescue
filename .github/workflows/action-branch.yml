@@ -55,7 +55,7 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          artifacts: build.zip
+          artifacts: /home/runner/work/Space-Rescue/Space-Rescue/build.zip,./build.zip,./text.txt,text.txt
 
   build:
     name: Build my project
