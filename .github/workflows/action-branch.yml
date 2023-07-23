@@ -97,7 +97,7 @@ jobs:
       - name: Upload static site
         uses: actions/upload-artifact@v2
         with:
-          name: static-site
+          name: static-site.zip
           path: .next/
           
       - name: Print Current Working Directory
