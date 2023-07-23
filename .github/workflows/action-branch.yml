@@ -68,8 +68,7 @@ jobs:
           # Token for the repository. Can be passed in using {{ secrets.GITHUB_TOKEN }}
           # Files to upload to GitHub, must be a multiline result. Glob supp
           # The artefact to download if this is being done within another workflow
-          artefactName: Release ${{ steps.tag_version.outputs.new_tag }}.zip
-          # Override artefact if it already exists. Token will need access to do so
+          artefactName: static-site
 
   build:
     name: Build my project
