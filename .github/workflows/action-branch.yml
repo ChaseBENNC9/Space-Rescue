@@ -37,7 +37,7 @@ jobs:
           if test -e /home/runner/work/Space-Rescue/Space-Rescue/static-site.zip; then
             echo "File exists"
             mkdir -p release
-            mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/static-site.zip
+            mv /home/runner/work/Space-Rescue/Space-Rescue/static-site.zip release/static-site.zip
           else
             echo "Non existent file requested"
           fi
