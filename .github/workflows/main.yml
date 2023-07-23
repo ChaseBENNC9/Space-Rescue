@@ -41,6 +41,7 @@ jobs:
             mkdir -p release
             mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/build.zip
             cd release
+            echo pwd
             ls .
           else
             echo "Non existent file requested"
@@ -66,8 +67,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
-          upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: ./build.zip
+          upload_url: ${{ steps.new_release.outputs.upload_url }}
+          asset_path: /home/runner/work/Space-Rescue/Space-Rescue/release/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
