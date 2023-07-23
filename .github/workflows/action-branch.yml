@@ -68,7 +68,7 @@ jobs:
           # Token for the repository. Can be passed in using {{ secrets.GITHUB_TOKEN }}
           # Files to upload to GitHub, must be a multiline result. Glob supp
           # The artefact to download if this is being done within another workflow
-          artefactName: static-site
+          artefactName: static-site.zip
 
   build:
     name: Build my project
