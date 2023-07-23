@@ -100,7 +100,7 @@ jobs:
           lfs: true
       
       - name: Check if commit was part of a pull request
-        id: 1check_pr_commit
+        id: check_pr_commit
         run: |
           if [[ -n "${{ github.event.pull_request }}" ]]; then
             echo "::set-output name=is_pr_commit::true"
@@ -109,9 +109,9 @@ jobs:
           fi
 
       - name: Get pull request body
-        id: 1pr_body
+        id: pr_body
         run: |
-          if [[ ${{ steps.1check_pr_commit.outputs.is_pr_commit }} == 'true' ]]; then
+          if [[ ${{ steps.check_pr_commit.outputs.is_pr_commit }} == 'true' ]]; then
             pr_body_value="${{ github.event.pull_request.body }}"
             echo "Pull Request Body: $pr_body_value"
             echo "::set-output name=body::$pr_body_value"
