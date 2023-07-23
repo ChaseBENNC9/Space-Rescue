@@ -36,6 +36,7 @@ jobs:
         run: |
           if test -e /home/runner/work/Space-Rescue/Space-Rescue/build.zip; then
             echo "File exists"
+            mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip ${{ runner.home }}/build.zip
           else
             echo "Non existent file requested"
           fi
@@ -53,7 +54,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build.zip        
+          files: ~/build.zip, ${{ runner.home }}/build.zip        
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
 
