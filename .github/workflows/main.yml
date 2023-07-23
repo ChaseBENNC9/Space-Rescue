@@ -35,12 +35,13 @@ jobs:
         run: | 
           ls ${{steps.pwd_step.outputs.current_dir}}
       - name: Check if file exists
-        run: test -e ${{steps.pwd_step.outputs.current_dir}}/build.zip
+        run: if test -e ${{steps.pwd_step.outputs.current_dir}}/build.zip then
+              echo "File exists"
+            else 
+              echo "Non existent file requested"
+            fi
         id: check_file
 
-      - name: Echo if file exists
-        if: steps.check_file.outputs.result == 'true'
-        run: echo "The file exists!"
         
       - uses: actions/checkout@v2
       - name: Bump version and push tag
