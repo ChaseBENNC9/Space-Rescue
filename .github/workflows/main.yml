@@ -13,7 +13,7 @@ jobs:
       - uses: actions/download-artifact@v3
         id: download
         with:
-          path: build
+          name: build
       - name: echo
         run: echo ${{steps.download.outputs.download-path}}
 
@@ -38,13 +38,15 @@ jobs:
         run: |
           if test -e /home/runner/work/Space-Rescue/Space-Rescue/build.zip; then
             echo "File exists"
+            mkdir -p release
+            mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/build.zip
           else
             echo "Non existent file requested"
           fi
         id: check_file
-
-        
-      - uses: actions/checkout@v2
+      - name: list files in release folder
+        run: ls ${{steps.pwd_step.outputs.current_dir}}/release
+   
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
@@ -63,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: /home/runner/work/Space-Rescue/Space-Rescue/build.zip
+          asset_path: /home/runner/work/Space-Rescue/Space-Rescue/release/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
