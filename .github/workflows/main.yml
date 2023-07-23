@@ -16,15 +16,15 @@ jobs:
           name: build
       - name: echo
         run: echo ${{steps.download.outputs.download-path}}
-
+      - name: list dir
+        run: ls
       - name: ZIP Build
         id: zip-release
         uses: thedoctor0/zip-release@master
         with: 
           type: zip
           filename: build.zip
-          path: ${{steps.download.outputs.download-path}}
-          directory: .
+
       - name: Print Current Working Directory
         id: pwd_step
         run: |
@@ -67,7 +67,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: /release/build.zip
+          asset_path: ./build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
