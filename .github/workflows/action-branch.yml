@@ -55,7 +55,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          #files: ~/build.zip, ${{ runner.home }}/build.zip , release/build.zip       
+          files: ~/static-site.zip, ${{ runner.home }}/static-site.zip , release/static-site.zip       
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
       - name: Upload release assets to an existing release
