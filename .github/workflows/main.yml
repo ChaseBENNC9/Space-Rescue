@@ -65,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: /home/runner/work/Space-Rescue/Space-Rescue/release/build.zip
+          asset_path: /release/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
@@ -102,6 +102,7 @@ jobs:
         with:
           targetPlatform: StandaloneWindows
           allowDirtyBuild: true
+          buildName: "Space Rescue"
           
       - name: Print Current Working Directory
         run: pwd
