@@ -28,10 +28,7 @@ jobs:
           
       - name: List contents of the directory
         run: | 
-          ls ${{ steps.download.outputs.download-path }}
           ls .
-          ls /home/runner/work/Space-Rescue/Space-Rescue
-
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
