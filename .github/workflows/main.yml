@@ -51,7 +51,7 @@ jobs:
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
       - name: Check if commit is part of a pull request
         id: pr_check
-        if: github.event_name == 'push' && github.event.pull_request
+        #if: github.event_name == 'push' && github.event.pull_request
         run: |
           echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
 
