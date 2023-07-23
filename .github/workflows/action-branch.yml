@@ -58,13 +58,13 @@ jobs:
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-      - name: action-upload-release
-        # You may pin to the exact commit or the version.
-        # uses: diamondburned/action-upload-release@7db8db63a78c06f926781e117394719b303ddfc7
-        uses: diamondburned/action-upload-release@v0.0.1
+      - name: Upload to Release Action
+        uses: Shopify/upload-to-release@v1.0.1
         with:
-          files: ./release/static-site.zip 
-          # The release ID to upload to. This is optional if the event that triggered
+        # Artifact name
+          name: static-site
+        # Path to the file to upload
+          path: release/static-site.zip
   build:
     name: Build my project
     runs-on: ubuntu-latest
