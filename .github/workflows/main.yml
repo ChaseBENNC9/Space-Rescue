@@ -64,18 +64,18 @@ jobs:
     name: Build my project ✨
     runs-on: ubuntu-latest
     steps:
-      - name: Print Current Working Directory
-        run: pwd
-      - name: list the Current Working Directory using ls
-        run: ls
-      - name: list the CWD using ls -a
-        run: ls -a
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           lfs: true
 
+      - name: Print Current Working Directory
+        run: pwd
+      - name: list the Current Working Directory using ls
+        run: ls
+      - name: list the CWD using ls -a
+        run: ls -a
       # Cache
       - uses: actions/cache@v3
         with:
@@ -94,9 +94,23 @@ jobs:
         with:
           targetPlatform: StandaloneWindows
           allowDirtyBuild: true
+          
+      - name: Print Current Working Directory
+        run: pwd
+      - name: list the Current Working Directory using ls
+        run: ls
+      - name: list the CWD using ls -a
+        run: ls -a
 
       # Output
       - uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
+          
+      - name: Print Current Working Directory
+        run: pwd
+      - name: list the Current Working Directory using ls
+        run: ls
+      - name: list the CWD using ls -a
+        run: ls -a     
