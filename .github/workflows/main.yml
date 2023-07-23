@@ -109,10 +109,10 @@ jobs:
           
       - name: Print Current Working Directory
         run: pwd
-      - name: list the Current Working Directory using ls
+      - name: list the CWD using ls
         run: ls
-      - name: list the CWD using ls -a
-        run: ls -a
+      - name: list the build  Directory using ls
+        run: ls build
 
       # Output
       - uses: actions/upload-artifact@v3
@@ -120,9 +120,3 @@ jobs:
           name: build
           path: build/SpaceRescue
           
-      - name: Print Current Working Directory
-        run: pwd
-      - name: list the Current Working Directory using ls
-        run: ls
-      - name: list the CWD using ls -a
-        run: ls -a     
