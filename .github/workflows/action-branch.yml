@@ -13,7 +13,7 @@ jobs:
       - uses: actions/download-artifact@v3
         id: download
         with:
-          name: static-site.zip
+          name: static-site
       - name: echo
         run: echo ${{steps.download.outputs.download-path}}
 
@@ -22,7 +22,7 @@ jobs:
         uses: thedoctor0/zip-release@master
         with: 
           type: zip
-          filename: build.zip
+          filename: static-site.zip
       - name: Print Current Working Directory
         id: pwd_step
         run: |
@@ -34,10 +34,10 @@ jobs:
           ls ${{steps.pwd_step.outputs.current_dir}}
       - name: Check if file exists
         run: |
-          if test -e /home/runner/work/Space-Rescue/Space-Rescue/build.zip; then
+          if test -e /home/runner/work/Space-Rescue/Space-Rescue/static-site.zip; then
             echo "File exists"
             mkdir -p release
-            mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/build.zip
+            mv /home/runner/work/Space-Rescue/Space-Rescue/build.zip release/static-site.zip
           else
             echo "Non existent file requested"
           fi
@@ -68,7 +68,9 @@ jobs:
           # Token for the repository. Can be passed in using {{ secrets.GITHUB_TOKEN }}
           # Files to upload to GitHub, must be a multiline result. Glob supp
           # The artefact to download if this is being done within another workflow
-          artefactName: static-site.zip
+          files: |
+            static-site.zip
+            release/static-site.zip
 
   build:
     name: Build my project
@@ -97,7 +99,7 @@ jobs:
       - name: Upload static site
         uses: actions/upload-artifact@v2
         with:
-          name: static-site.zip
+          name: static-site
           path: .next/
           
       - name: Print Current Working Directory
