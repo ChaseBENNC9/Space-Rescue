@@ -13,7 +13,7 @@ jobs:
       - uses: actions/download-artifact@v3
         id: download
         with:
-          name: static-site
+          name: static-site.zip
       - name: echo
         run: echo ${{steps.download.outputs.download-path}}
 
