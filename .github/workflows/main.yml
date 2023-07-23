@@ -105,7 +105,7 @@ jobs:
         with:
           targetPlatform: StandaloneWindows
           allowDirtyBuild: true
-          buildName: "Space Rescue"
+          buildName: "SpaceRescue"
           
       - name: Print Current Working Directory
         run: pwd
@@ -118,7 +118,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build
-          path: build
+          path: build/SpaceRescue
           
       - name: Print Current Working Directory
         run: pwd
