@@ -42,7 +42,8 @@ jobs:
             echo "Non existent file requested"
           fi
         id: check_file
-
+      - name: list files in release folder
+        run: ls ${{steps.pwd_step.outputs.current_dir}}/release
         
       - uses: actions/checkout@v2
       - name: Bump version and push tag
@@ -55,7 +56,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ~/static-site.zip, ${{ runner.home }}/static-site.zip , release/static-site.zip       
+          files: ~/static-site.zip, ${{steps.pwd_step.outputs.current_dir}}/release/static-site.zip  
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
       - name: Upload release assets to an existing release
