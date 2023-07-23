@@ -30,7 +30,7 @@ jobs:
         run: | 
           ls .
       - name: Check if file exists
-        run: test -e path/to/your/file.txt
+        run: test -e ./build.zip
         id: check_file
 
       - name: Echo if file exists
