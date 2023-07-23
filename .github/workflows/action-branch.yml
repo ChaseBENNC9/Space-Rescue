@@ -55,9 +55,21 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ~/build.zip, ${{ runner.home }}/build.zip , release/build.zip       
+          #files: ~/build.zip, ${{ runner.home }}/build.zip , release/build.zip       
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
+      - name: Upload release assets to an existing release
+        # You may pin to the exact commit or the version.
+        # uses: echapmanFromBunnings/upload-release-assets@c0699e52ff893d641fe059bf36aa0b0fa141e232
+        uses: echapmanFromBunnings/upload-release-assets@1.3
+        with:
+          # Release tag to be updated
+          releaseTag: ${{ steps.tag_version.outputs.new_tag }}
+          # Token for the repository. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+          # Files to upload to GitHub, must be a multiline result. Glob supp
+          # The artefact to download if this is being done within another workflow
+          artefactName: Release ${{ steps.tag_version.outputs.new_tag }}.zip
+          # Override artefact if it already exists. Token will need access to do so
 
   build:
     name: Build my project
