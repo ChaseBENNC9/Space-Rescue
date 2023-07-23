@@ -26,12 +26,16 @@ jobs:
           path: ${{steps.download.outputs.download-path}}
           directory: .
       - name: Print Current Working Directory
-        run: pwd
+        id: pwd_step
+        run: |
+          current_dir=$(pwd)
+          echo "Current Working Directory: $current_dir"
+          echo "::set-output name=current_dir::$current_dir"
       - name: List contents of the directory
         run: | 
-          ls -a
+          ls ${{steps.pwd_step.outputs.current_dir}}
       - name: Check if file exists
-        run: test -e ./build.zip
+        run: test -e ${{steps.pwd_step.outputs.current_dir}}/build.zip
         id: check_file
 
       - name: Echo if file exists
@@ -57,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: ./build.zip
+          asset_path: /home/runner/work/Space-Rescue/Space-Rescue/build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
