@@ -25,10 +25,11 @@ jobs:
           filename: build.zip
           path: ${{steps.download.outputs.download-path}}
           directory: .
-          
+      - name: Print Current Working Directory
+        run: pwd
       - name: List contents of the directory
         run: | 
-          ls .
+          ls -a
       - name: Check if file exists
         run: test -e ./build.zip
         id: check_file
@@ -65,6 +66,10 @@ jobs:
     steps:
       - name: Print Current Working Directory
         run: pwd
+      - name: list the Current Working Directory using ls
+        run: ls
+      - name: list the CWD using ls -a
+        run: ls -a
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
