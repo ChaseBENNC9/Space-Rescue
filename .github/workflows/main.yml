@@ -41,7 +41,7 @@ jobs:
           else
             echo "Non existent file requested"
           fi
-          id: check_file
+        id: check_file
 
         
       - uses: actions/checkout@v2
