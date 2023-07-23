@@ -29,6 +29,14 @@ jobs:
       - name: List contents of the directory
         run: | 
           ls .
+      - name: Check if file exists
+        run: test -e path/to/your/file.txt
+        id: check_file
+
+      - name: Echo if file exists
+        if: steps.check_file.outputs.result == 'true'
+        run: echo "The file exists!"
+        
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
@@ -48,7 +56,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: build.zip
+          asset_path: ./build.zip
           asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
           asset_content_type: application/zip
   build:
