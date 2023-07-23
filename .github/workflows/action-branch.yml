@@ -23,8 +23,6 @@ jobs:
         with: 
           type: zip
           filename: build.zip
-          path: ${{steps.download.outputs.download-path}}
-          directory: .
       - name: Print Current Working Directory
         id: pwd_step
         run: |
@@ -57,15 +55,8 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-      - name: Upload to Github Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-        with:
-          upload_url: ${{ steps.new_release.outputs.upload_url}}
-          asset_path: ./build.zip
-          asset_name: build-${{ steps.tag_version.outputs.new_tag}}.zip
-          asset_content_type: application/zip
+          artifacts: build.zip
+
   build:
     name: Build my project
     runs-on: ubuntu-latest
