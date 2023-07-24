@@ -27,16 +27,7 @@ jobs:
         with: 
           type: zip
           filename: build.zip
-      - name: Check if the pull request was merged
-        id: check_merge
-        run: |
-          if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
-            echo "Pull request was merged!"
-            echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
-          else
-            echo "Error: Pull request to main branch was closed but not merged."
-            exit 1
-          fi
+ 
       - name: Print Current Working Directory
         id: pwd_step
         run: |
@@ -65,7 +56,7 @@ jobs:
           path: /release
           file: body.md
             # The content of the file
-          content: ${{ steps.check_merge.outputs.pr_body }}
+          content: ${{ github.event.pull_request.body }}
           
       - name: list files in release folder
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
@@ -109,14 +100,7 @@ jobs:
           fi
       - name: list dir
         run: ls
-      - name: create body.md
-        uses: 1arp/create-a-file-action@0.2
-        with:            
-          file: body.md
-            # The content of the file
-          content: ${{ github.event.pull_request.body }}
-      - name: Check Body Contents
-        run: cat body.md
+    
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
