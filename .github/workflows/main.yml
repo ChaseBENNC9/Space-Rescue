@@ -103,7 +103,7 @@ jobs:
         run: |
           if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
             echo "Pull request was merged!"
-            echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
+            run: echo "{pr_body}=${{ github.event.pull_request.body }}" >> $GITHUB_OUTPUT
           else
             echo "Error: Pull request to main branch was closed but not merged."
             exit 1
@@ -118,11 +118,6 @@ jobs:
           content: ${{ steps.check_merge.outputs.pr_body }}
       - name: Check Body Contents
         run: cat body.md
-          
-      - name: list files in release folder
-        run: ls ${{steps.pwd_step.outputs.current_dir}}/release
-      - name: Check Body Contents
-        run: cat /release/body.md
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
