@@ -108,15 +108,16 @@ jobs:
             echo "Error: Pull request to main branch was closed but not merged."
             exit 1
           fi
+      - name: list dir
+        run: ls
       - name: create body.md
         uses: 1arp/create-a-file-action@0.2
         with:            
-          path: /release
           file: body.md
             # The content of the file
           content: ${{ steps.check_merge.outputs.pr_body }}
       - name: Check Body Contents
-        run: cat /release/body.md
+        run: cat body.md
           
       - name: list files in release folder
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
