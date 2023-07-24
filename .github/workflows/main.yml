@@ -103,7 +103,7 @@ jobs:
         run: |
           if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
             echo "Pull request was merged!"
-            run: echo "{pr_body}=${{ github.event.pull_request.body }}" >> $GITHUB_OUTPUT
+            echo "pr_body=${{ github.event.pull_request.body }}" >> $GITHUB_OUTPUT
           else
             echo "Error: Pull request to main branch was closed but not merged."
             exit 1
