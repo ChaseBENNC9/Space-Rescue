@@ -61,7 +61,7 @@ jobs:
       - name: list files in release folder
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
       - name: Check Body Contents
-        run: cat /release/body.md
+        run: cat /home/runner/work/Space-Rescue/Space-Rescue/release/body.md
 
       - name: Bump version and push tag
         id: tag_version
