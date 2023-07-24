@@ -8,25 +8,10 @@ on:
       - main
 jobs:
 
-  check-merged-pr:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Check if the pull request was merged
-          id: check_merge
-          run: |
-            if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
-              echo "Pull request was merged!"
-              echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
-            else
-              echo "Error: Pull request to main branch was closed but not merged."
-              exit 1
-            fi
   release-project:
     name: Release Project
     runs-on: ubuntu-latest
-    needs: 
-    - build
-    - check-merged-pr
+    needs: build
     steps: 
       - uses: actions/download-artifact@v3
         id: download
@@ -42,7 +27,16 @@ jobs:
         with: 
           type: zip
           filename: build.zip
-
+      - name: Check if the pull request was merged
+        id: check_merge
+        run: |
+          if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+            echo "Pull request was merged!"
+            echo "::set-output name=pr_body::${{ github.event.pull_request.body }}"
+          else
+            echo "Error: Pull request to main branch was closed but not merged."
+            exit 1
+          fi
       - name: Print Current Working Directory
         id: pwd_step
         run: |
@@ -65,6 +59,14 @@ jobs:
             echo "Non existent file requested"
           fi
         id: check_file
+      - name: create body.md
+        uses: 1arp/create-a-file-action@0.2
+        with:            
+            # The name of the file to be created with extention
+          file: body.md
+            # The content of the file
+          content: ${{ steps.check_merge.outputs.pr_body }}
+          
       - name: list files in release folder
         run: ls ${{steps.pwd_step.outputs.current_dir}}/release
         
@@ -81,7 +83,7 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ needs.check-merged-pr.outputs.pr_body }}
+          bodyFile: /home/runner/work/Space-Rescue/Space-Rescue/release/body.md
       - name: Upload to Github Release
         uses: actions/upload-release-asset@v1
         env:
@@ -94,7 +96,6 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
-    needs: check-merged-pr
 
     steps:
       # Checkout
@@ -102,24 +103,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: true
-      
-      - name: Check if commit was part of a pull request
-        id: check_pr_commit
-        run: |
-          if [[ -n "${{ github.event.pull_request }}" ]]; then
-            echo "::set-output name=is_pr_commit::true"
-          else
-            echo "::set-output name=is_pr_commit::false"
-          fi
-
-      - name: Get pull request body
-        id: pr_body
-        run: |
-          if [[ ${{ steps.check_pr_commit.outputs.is_pr_commit }} == 'true' ]]; then
-            pr_body_value="${{ github.event.pull_request.body }}"
-            echo "Pull Request Body: $pr_body_value"
-            echo "::set-output name=body::$pr_body_value"
-          fi
+    
       
       
       - name: Print Current Working Directory
