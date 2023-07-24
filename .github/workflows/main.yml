@@ -68,6 +68,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.REPO_TOKEN }}
+          default_bump: minor
       - name: Create a GitHub release
         id: new_release
         uses: ncipollo/release-action@v1
