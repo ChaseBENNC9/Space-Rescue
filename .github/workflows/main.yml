@@ -62,8 +62,7 @@ jobs:
       - name: create body.md
         uses: 1arp/create-a-file-action@0.2
         with:            
-            # The name of the file to be created with extention
-          path: /home/runner/work/Space-Rescue/Space-Rescue/release/
+          path: /release
           file: body.md
             # The content of the file
           content: ${{ steps.check_merge.outputs.pr_body }}
