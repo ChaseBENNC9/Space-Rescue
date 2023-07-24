@@ -103,7 +103,6 @@ jobs:
         run: |
           if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
             echo "Pull request was merged!"
-            echo "pr_body=${{ github.event.pull_request.body }}" >> $GITHUB_OUTPUT
           else
             echo "Error: Pull request to main branch was closed but not merged."
             exit 1
@@ -115,7 +114,7 @@ jobs:
         with:            
           file: body.md
             # The content of the file
-          content: ${{ steps.check_merge.outputs.pr_body }}
+          content: ${{ github.event.pull_request.body }}
       - name: Check Body Contents
         run: cat body.md
       # Checkout
