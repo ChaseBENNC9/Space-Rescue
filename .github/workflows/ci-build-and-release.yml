@@ -6,6 +6,7 @@ on:
             - closed
         branches:
             - main
+    workflow_dispatch:
 
 jobs:
     build-project:
@@ -19,7 +20,6 @@ jobs:
                     echo "Pull request was merged!"
                 else
                     echo "Error: Pull request to main branch was closed but not merged."
-                    exit 1
                 fi
             # Checkout
             - name: Checkout Repo #Checkouts to the Repository
