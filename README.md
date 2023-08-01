@@ -10,5 +10,6 @@ https://www.youtube.com/watch?v=FlE8e1JwVzs
 # Testing the CI
 Change the Documentation
 Bug Fix
+New Feature 1
 
 [![Create Build and Release](https://github.com/ChaseBENNC9/Space-Rescue/actions/workflows/ci-build-and-release.yml/badge.svg)](https://github.com/ChaseBENNC9/Space-Rescue/actions/workflows/ci-build-and-release.yml)
