@@ -1,0 +1,33 @@
+---
+#################################
+#################################
+## Super Linter GitHub Actions ##
+#################################
+#################################
+name: Validate Code Base
+
+#############################
+# Start the job on all push #
+#############################
+on:
+  push:
+    branches-ignore: [master, main]
+    # Remove the line above to run when pushing to master
+  pull_request:
+    branches: [master, main]
+    
+  workflow_dispatch:
+###############
+# Set the Job #
+###############
+jobs:
+  resharper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: resharper
+        uses: glassechidna/resharper-action@master
+        with:
+          solution: Space-Rescue.sln
