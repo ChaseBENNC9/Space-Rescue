@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveAmo;
     Vector3 smoothMoveVel = Vector3.zero;
     public Vector3 direction;
+    private const integer = 12;
 
     // Start is called before the first frame update
     void Start()

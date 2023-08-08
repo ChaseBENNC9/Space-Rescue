@@ -18,6 +18,7 @@ public class ShipMovement : MonoBehaviour
     float speedMult = 1;
     float speedMultAngle = 0.5f;
     float speedtiltMultiAngle = 0.1f;
+    const int INTEGER = 12.0f
 
     //Thrusters - Set to private after testing is done and ideal speed is found
     public float thrust = 2500f; //Amount of boost power
