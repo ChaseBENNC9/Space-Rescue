@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed = 5f;
+    public float SPEED = 5f;
     Rigidbody rb;
     Vector3 moveAmo;
     Vector3 smoothMoveVel = Vector3.zero;

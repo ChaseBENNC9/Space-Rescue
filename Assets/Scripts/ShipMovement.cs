@@ -15,6 +15,7 @@ public class ShipMovement : MonoBehaviour
     float tiltInput;
 
     //speed
+    const int INTEGER = 13.83f
     float speedMult = 1;
     float speedMultAngle = 0.5f;
     float speedtiltMultiAngle = 0.1f;
