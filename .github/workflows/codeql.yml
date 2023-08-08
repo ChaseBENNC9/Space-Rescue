@@ -1,0 +1,58 @@
+
+name: Validate Code Base
+
+
+on:
+  push:
+    branches-ignore: [master, main]
+  pull_request:
+    branches: [master, main]
+    
+  workflow_dispatch:
+
+jobs:
+  Validate-Codebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: list folders using ls
+        run: |
+          ls
+          ls ./Assets/Scripts
+        
+      - name: Get Changed Files
+        id: changed-files
+        run: |
+          echo "::set-output name=changed_files::$(git diff ${{ github.event.before }} HEAD --name-only)"
+      - name: Print Files
+        run: |
+          for file in ${{ steps.changed-files.outputs.changed_files }}; do
+                echo $file
+                if [[ $file == *.cs ]]; then
+                  echo "CSharp"
+                  echo $file
+                fi
+            done
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "7.0.x"
+      - name: Install dotnet-format
+        run: dotnet tool install -g dotnet-format
+
+
+      - name: Analyze Changed Files
+        run: |
+          changed_files=${{ steps.changed-files.outputs.changed_files }}
+          for file in $changed_files; do
+              echo $file
+              if [[ $file == *.cs ]]; then
+                dotnet-format -f --include "$file" --check
+              fi
+          done
+
+        
