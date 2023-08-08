@@ -27,11 +27,16 @@ jobs:
       - name: Get Changed Files
         id: changed-files
         run: |
-          CHANGED_FILES=$(git diff ${{ github.event.before }} HEAD --name-only)
-          echo "Changed Files: $CHANGED_FILES"
-
-          echo "::set-output name=changed_files::$CHANGED_FILES"
-
+          echo "::set-output name=changed_files::$(git diff ${{ github.event.before }} HEAD --name-only)"
+      - name: Print Files
+        run: |
+          for file in ${{ steps.changed-files.outputs.changed_files }}; do
+                echo $file
+                if [[ $file == *.cs ]]; then
+                  echo "CSharp"
+                  echo $file
+                fi
+            done
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
         with:
