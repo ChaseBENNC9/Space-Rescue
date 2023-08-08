@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour
 {
 
-     private RectTransform progressBar;
+    private RectTransform progressBar;
     public float targetScale; 
-    public float barSpeed = 5 ;  
+    public float barSpeed = 5 ; 
     private float startScale;  
     private float percentScaled;
     // Start is called before the first frame update
