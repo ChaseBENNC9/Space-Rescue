@@ -7,14 +7,12 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    private GameObject menu;
     public static MenuManager Instance;
     
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
-        menu = GameObject.Find("Menu Parent");
     }
 
     public void PlayButton()
@@ -25,20 +23,18 @@ public class MenuManager : MonoBehaviour
 
     public void SettingsButton()
     {
-        menu.SetActive(false);
-        SceneManager.LoadScene("Controls", LoadSceneMode.Additive);
+        /*title.SetActive(false);
+        settings.SetActive(true);
+        credits.SetActive(false);
+        controlsButton.interactable = false; //makes controls tab automatically "selected"*/
+        SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
     }
 
     public void QuitButton()
     {
         Application.Quit();
     }
-    public void BackButton()
-    {
-        SceneManager.UnloadSceneAsync("Controls");
-        menu.SetActive(true);
-        Time.timeScale = 1;
-    }
+
     public void TutorialButton()
     {
         SceneManager.LoadScene("Game Tutorial");
