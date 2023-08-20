@@ -26,6 +26,6 @@ jobs:
         run: |
           git diff ${{github.event.before}} --name-only
           ls .
-          dotnet format .\Space-Rescue.sln --include $(git diff ${{github.event.before}} --name-only) --verify-no-changes
+          dotnet format Space-Rescue.sln --include $(git diff ${{github.event.before}} --name-only) --verify-no-changes
 
 
