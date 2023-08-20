@@ -6,8 +6,7 @@ name: MegaLinter
 on:
   # Trigger mega-linter at every push. Action will also be visible from Pull Requests to main
   push: # Comment this line to trigger action only on pull-requests (not recommended if you don't pay for GH Actions)
-  pull_request:
-    branches: [master, main]
+
 
 jobs:
   run-linters:
@@ -26,6 +25,7 @@ jobs:
       - name: show git diff
         run: |
           git diff ${{github.event.before}} --name-only
-          dotnet format Space-Rescue.sln --include $(git diff ${{github.event.before}} --name-only) --verify-no-changes
+          ls .
+          dotnet format ./Space-Rescue.sln --include $(git diff ${{github.event.before}} --name-only) --verify-no-changes
 
 
