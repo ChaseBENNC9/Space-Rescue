@@ -9,23 +9,21 @@ on:
 
 
 jobs:
-  run-linters:
-    name: Run linters
-    runs-on: windows-latest
+  dotnet-format:
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v1
+      - name: Add dotnet-format problem matcher
+        uses: xt0rted/dotnet-format-problem-matcher@v1
+
+      - name: Restore dotnet tools
+        uses: xt0rted/dotnet-tool-restore@v1
+
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
         with:
-          dotnet-version: "7.0.x"
-      - name: show git diff
-        run: |
-          git diff ${{github.event.before}} --name-only
-          ls .
-          dotnet format Space-Rescue.sln --include $(git diff ${{github.event.before}} --name-only) --verify-no-changes
+          only-changed-files: "true"
 
 
