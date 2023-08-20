@@ -4,11 +4,9 @@ on:
   # Trigger the workflow on push or pull request,
   # but only for the main branch
   push:
-    branches:
+    branches-ignore:
       - main
-  pull_request:
-    branches:
-      - main
+
 
 jobs:
   run-linters:
@@ -25,7 +23,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "6.0.x"
-
+      - name: show git diff
+        run: |
+          echo ${{git diff ${{github.event.before}}}}
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
