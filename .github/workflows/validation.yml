@@ -25,7 +25,7 @@ jobs:
           dotnet-version: "6.0.x"
       - name: show git diff
         run: |
-          echo ${{git diff ${{github.event.before}}}}
+          git diff ${{github.event.before}}
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
