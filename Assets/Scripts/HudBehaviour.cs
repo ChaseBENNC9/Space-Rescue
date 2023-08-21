@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class HudBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static HudBehaviour instance;
+    public static HudBehaviour Instance;
     public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects
-    public const int namingViolations = 5;
+    public const int NAMINGVIOLATIONS = 5;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
         HideInfoPanel();
     }
 

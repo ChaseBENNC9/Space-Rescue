@@ -1,8 +1,8 @@
-//Updates UI as needed
+﻿//Updates UI as needed
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,13 +10,16 @@ public class GameEndManager : MonoBehaviour
 {
     //The text of the number of planets saved
     public Text savedNumber;
+
     //Game objects for saved numbers and the text above it
     public GameObject savedNumGO;
     public GameObject savedTextGO;
     public GameObject menuButton;
+
     //Text announcing the result
     public Text winningText;
-    private const int really = 4;
+    private const int REALLY = 3;
+
     void Start()
     {
         //Updates score and winning state when end game state is entered
@@ -25,10 +28,9 @@ public class GameEndManager : MonoBehaviour
         //Enable cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        if(GameSettings.Tutorial)
+        if (GameSettings.Tutorial)
             GameObject.Find("Restart").GetComponent<Text>().text = "Continue";
-            menuButton.SetActive(true);
- 
+        menuButton.SetActive(true);
     }
 
     //Sets the score display to the current game score
@@ -40,10 +42,11 @@ public class GameEndManager : MonoBehaviour
     //Updates the text depending on if you escaped or died
     public void UpdateWinning()
     {
-        if(GameSettings.Tutorial)
+        if (GameSettings.Tutorial)
         {
-            winningText.text = "You Completed the Tutorial! \n Press the button below \nto play the game!";
-        } 
+            winningText.text =
+                "You Completed the Tutorial! \n Press the button below \nto play the game!";
+        }
         else if (GameSettings.Winning)
         {
             winningText.text = "Escaped!";
@@ -64,14 +67,15 @@ public class GameEndManager : MonoBehaviour
         GameSettings.Tutorial = false;
         SceneManager.LoadScene("Main scene");
     }
+
     public void QuitButton()
     {
         Application.Quit();
     }
+
     public void MenuButton()
     {
         GameSettings.Tutorial = false;
         SceneManager.LoadScene("Title Screen");
     }
-
 }

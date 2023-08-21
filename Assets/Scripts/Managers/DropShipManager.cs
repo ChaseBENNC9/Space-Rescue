@@ -1,4 +1,4 @@
-// Description: DropShipManager class for managing the dropship range and checking if the layer is nearby
+﻿// Description: DropShipManager class for managing the dropship range and checking if the layer is nearby
 // Author: Palin Wiseman
 // Last Updated: 10/08/2023
 // Last Updated By: Palin Wiseman
@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class DropShipManager : MonoBehaviour
 {
-    private const int numbers = 3;
+    private const int NUMBERS = 2;
+
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
