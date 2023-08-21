@@ -1,4 +1,4 @@
-// Description: Script controls each individual animal after spawn
+﻿// Description: Script controls each individual animal after spawn
 // Author: Erika Stuart
 // Last Updated: 9/08/2023
 // Last Updated By: Palin Wiseman
@@ -17,7 +17,7 @@ public class AnimalController : MonoBehaviour
     private float radius;
     private bool inRange = false;
 
-    private const int minwait = 4;
+    private const int MINWAIT = 4;
     private const int MAXWAIT = 11;
 
     // Start is called before the first frame update
@@ -25,17 +25,17 @@ public class AnimalController : MonoBehaviour
     {
         radius = GameObject.Find("Planet").transform.localScale.x / 2;
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(wait());
+        StartCoroutine(Wait());
     }
 
     // Update is called once per frame
     void Update()
     {
         if (inRange && Input.GetKeyDown(Keybinds.Interact) && Time.timeScale != 0) //TODO: Add a max held? Also have a better visual way of seeing when you have held animals. And what ones
-            {
-                PlanetManager.Instance.UpdateHeldAnimals(gameObject.name); //Updating the UI to show the amount of animals held
-                Destroy(gameObject);
-            }
+        {
+            PlanetManager.Instance.UpdateHeldAnimals(gameObject.name); //Updating the UI to show the amount of animals held
+            Destroy(gameObject);
+        }
     }
 
     //on trigger enter and on trigger exit toggling in range on and off
@@ -46,7 +46,7 @@ public class AnimalController : MonoBehaviour
             inRange = true;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -55,7 +55,7 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    IEnumerator wait()
+    IEnumerator Wait()
     {
         while (true)
         {
