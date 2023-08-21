@@ -26,6 +26,7 @@ public class AnimalController : MonoBehaviour
         radius = GameObject.Find("Planet").transform.localScale.x / 2;
         rb = GetComponent<Rigidbody>();
         StartCoroutine(Wait());
+
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class AnimalController : MonoBehaviour
     {
         if (inRange && Input.GetKeyDown(Keybinds.Interact) && Time.timeScale != 0) //TODO: Add a max held? Also have a better visual way of seeing when you have held animals. And what ones
         {
+
             PlanetManager.Instance.UpdateHeldAnimals(gameObject.name); //Updating the UI to show the amount of animals held
             Destroy(gameObject);
         }
@@ -46,6 +48,7 @@ public class AnimalController : MonoBehaviour
             inRange = true;
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -64,6 +67,7 @@ public class AnimalController : MonoBehaviour
 
             //https://forum.unity.com/threads/help-using-coroutine-to-move-game-object-to-position-wait-then-return-to-original-position.1122784/
             //BLESSED UNITY FORUMS
+
             RaycastHit hit;
 
             while (Vector3.Distance(transform.position, pos) > 1) //while the animal is not at their desired position
