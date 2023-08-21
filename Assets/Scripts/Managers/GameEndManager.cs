@@ -44,8 +44,7 @@ public class GameEndManager : MonoBehaviour
     {
         if (GameSettings.Tutorial)
         {
-            winningText.text =
-                "You Completed the Tutorial! \n Press the button below \nto play the game!";
+            winningText.text = "You Completed the Tutorial! \n Press the button below \nto play the game!";
         }
         else if (GameSettings.Winning)
         {

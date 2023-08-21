@@ -26,7 +26,6 @@ public class AnimalController : MonoBehaviour
         radius = GameObject.Find("Planet").transform.localScale.x / 2;
         rb = GetComponent<Rigidbody>();
         StartCoroutine(Wait());
-
     }
 
     // Update is called once per frame
@@ -34,7 +33,6 @@ public class AnimalController : MonoBehaviour
     {
         if (inRange && Input.GetKeyDown(Keybinds.Interact) && Time.timeScale != 0) //TODO: Add a max held? Also have a better visual way of seeing when you have held animals. And what ones
         {
-
             PlanetManager.Instance.UpdateHeldAnimals(gameObject.name); //Updating the UI to show the amount of animals held
             Destroy(gameObject);
         }
@@ -48,7 +46,6 @@ public class AnimalController : MonoBehaviour
             inRange = true;
         }
     }
-
 
     private void OnTriggerExit(Collider other)
     {
