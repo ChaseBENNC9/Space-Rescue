@@ -10,8 +10,7 @@ on:
     paths:
         - "**.cs"
         - ".editorconfig"
-  pull_request: # Comment this line to trigger action only on pull-requests (not recommended if you don't pay for GH Actions)
-    branches: [master, main]
+
 jobs:
   run-linters:
     name: Run linters
@@ -30,6 +29,6 @@ jobs:
       - name: show git diff
         run: |
           git diff ${{github.event.before}} --name-only
-          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}})  --verify-no-changes --no-restore
+          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}})  --verify-no-changes --no-restore --verbosity diagnostic
 
 
