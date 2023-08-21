@@ -16,6 +16,7 @@ public class GameEndManager : MonoBehaviour
     public GameObject menuButton;
     //Text announcing the result
     public Text winningText;
+    private const int really = 4;
     void Start()
     {
         //Updates score and winning state when end game state is entered

@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class DropShipManager : MonoBehaviour
 {
-    private const int numbers = 4;
+    private const int numbers = 3;
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
