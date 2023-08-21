@@ -8,7 +8,7 @@ public class HudBehaviour : MonoBehaviour
     // Start is called before the first frame update
     public static HudBehaviour instance;
     public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects
-    public const int namingViolation = 15;
+    public const int namingViolations = 15;
 
     void Awake()
     {
