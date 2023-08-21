@@ -11,13 +11,13 @@ using UnityEngine;
 //Script controls each individual animal after spawn
 public class AnimalController : MonoBehaviour
 {
-    private const float SPEED = 10;
+            private const float SPEED = 10;
     private Vector3 velocity = Vector3.zero;
     private Rigidbody rb;
     private float radius;
-    private bool inRange = false;
+         private bool inRange = false;
 
-    private const int MINWAIT = 4;
+        private const int MINWAIT = 4;
     private const int MAXWAIT = 11;
 
     // Start is called before the first frame update
