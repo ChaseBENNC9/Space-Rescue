@@ -7,10 +7,6 @@ on:
   # Trigger mega-linter at every push. Action will also be visible from Pull Requests to main
   push:
     branches-ignore: [master, main]
-    paths:
-        - "**.cs"
-        - ".editorconfig"
-        - "validation.yml"
 
 jobs:
   run-linters:
@@ -26,13 +22,8 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "6.0.102"
+          dotnet-version: "6.0.x"
       - name: show git diff
         run: |
-          dotnet restore Space-Rescue.sln
-          dotnet restore Assembly-CSharp.csproj
-          git diff ${{github.event.before}} --name-only
-          
-          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)  --verify-no-changes --no-restore --verbosity diagnostic
-
+          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)  --verify-no-changes
 
