@@ -5,25 +5,31 @@ name: MegaLinter
 
 on:
   # Trigger mega-linter at every push. Action will also be visible from Pull Requests to main
+  push:
+    branches: [master, main]
+    paths:
+        - "**.cs"
+        - ".editorconfig"
   pull_request: # Comment this line to trigger action only on pull-requests (not recommended if you don't pay for GH Actions)
-
-
+    branches: [master, main]
 jobs:
-  dotnet-format:
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Add dotnet-format problem matcher
-        uses: xt0rted/dotnet-format-problem-matcher@v1
-
-      - name: Restore dotnet tools
-        uses: xt0rted/dotnet-tool-restore@v1
-
-      - name: Run dotnet format
-        uses: xt0rted/dotnet-format@v1
+      - name: Check out Git repository
+        uses: actions/checkout@v3
         with:
-          only-changed-files: "true"
+          fetch-depth: 2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+      - name: show git diff
+        run: |
+          git diff ${{github.event.before}} --name-only
+          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}})  --verify-no-changes
 
 
