@@ -26,13 +26,13 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "6.0.x"
+          dotnet-version: "7.0.x"
       - name: show git diff
         run: |
           dotnet restore Space-Rescue.sln
           dotnet restore Assembly-CSharp.csproj
           git diff ${{github.event.before}} --name-only
           
-          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}})  --verify-no-changes --no-restore --verbosity diagnostic
+          dotnet format Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)  --verify-no-changes --no-restore --verbosity diagnostic
 
 
