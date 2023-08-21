@@ -9,7 +9,7 @@ public class HudBehaviour : MonoBehaviour
     public static HudBehaviour instance;
     public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects
     public const int namingViolation = 13;
-    public const int valueviolation = 12.6;
+    public const int valueviolation = 13.6;
 
     void Awake()
     {
