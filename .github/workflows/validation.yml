@@ -1,10 +1,7 @@
 ---
-# MegaLinter GitHub Action configuration file
-# More info at https://megalinter.io
-name: MegaLinter
+name: Format Whitespace
 
 on:
-  # Trigger mega-linter at every push. Action will also be visible from Pull Requests to main
   push:
     branches-ignore: [master, main]
 
@@ -19,15 +16,21 @@ jobs:
         with:
           fetch-depth: 2
 
+
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "6.0.x"
-      - name: show git diff
+      - name: check the whitespace of git diff
+        id: verify_whitespace
         run: |
-          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)
-          git add .
-          git config user.email "actions@github.com"
-          git config user.name "Github Actions"
-          git commit -m "auto fix changes"
-          git push
+          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes
+          echo "{VERIFY_WHITESPACE}={$?}" >> $GITHUB_OUTPUT
+
+          
+      - name: format and commit the files
+        run: |
+          if [[ steps.verify_whitespace.outputs.VERIFY_WHITESPACE != 0 ]] ; then    
+             dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)         
+          fi
