@@ -18,7 +18,7 @@ public class AnimalController : MonoBehaviour
     private bool inRange = false;
 
             private const int MINWAIT = 4;
-    private const int MAXWAIT = 11;
+        private const int MAXWAIT = 11;
 
     // Start is called before the first frame update
     void Start()
