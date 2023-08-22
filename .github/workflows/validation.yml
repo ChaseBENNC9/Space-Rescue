@@ -31,7 +31,9 @@ jobs:
 
         continue-on-error: true
       - name: print whitespace output
-        run: echo ${{ steps.verify_whitespace.outputs.VERIFY_WHITESPACE }}
+        env:
+          WHTESPCE: ${{ steps.verify_whitespace.outputs.VERIFY_WHITESPACE }}
+        run: echo $WHTESPCE
           
       - name: format and commit the files
         if: ${{steps.verify_whitespace.outputs.VERIFY_WHITESPACE != 0}}
