@@ -11,8 +11,8 @@ public class HudBehaviour : MonoBehaviour
     public const int NAMINGVIOLATIONS = 5;
 
     void Awake()   
-    {
-        Instance = this;
+    {   
+            Instance = this;
         HideInfoPanel ();
     } 
 
