@@ -32,12 +32,12 @@ jobs:
         continue-on-error: true
           
       - name: format and commit the files
+        if: ${{steps.verify_whitespace.outputs.VERIFY_WHITESPACE != 0}}
         run: |
-          if [[ steps.verify_whitespace.outcome == 'failure' ]] ; then    
-             dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) 
-             git add .
-            git config user.email "actions@github.com"
-            git config user.name "Github Actions"
-            git commit -m "auto fix changes"
-            git push
-          fi
+          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) 
+          git add .
+          git config user.email "actions@github.com"
+          git config user.name "Github Actions"
+          git commit -m "auto fix changes"
+          git push
+
