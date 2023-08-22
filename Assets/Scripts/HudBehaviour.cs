@@ -6,18 +6,18 @@ using UnityEngine.UI;
 public class HudBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static HudBehaviour Instance;
-    public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects
+    public static HudBehaviour Instance;          
+    public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects    
     public const int NAMINGVIOLATIONS = 5;
 
-    void Awake()
+    void Awake()   
     {
         Instance = this;
-        HideInfoPanel();
-    }
+        HideInfoPanel ();
+    } 
 
 
-    //Displays the Planet Info Panel with information about the planet
+    //Displays the Planet Info Panel wi    th information about the planet
     //PlanetDetection status: the Planet Detection script attached to the planet has info about whether the planet has been rescued and if the player is close enough to land
     //dist: the distance between the player and the planet distBlackHole: distance between planet and blackhole, name: name of the planet
 
