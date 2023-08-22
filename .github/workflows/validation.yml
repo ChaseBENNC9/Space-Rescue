@@ -26,4 +26,8 @@ jobs:
       - name: show git diff
         run: |
           dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only)  --verify-no-changes
-
+          VERIFY_WHITESPACE=$?
+          if [[ $VERIFY_WHITESPACE != 0 ]] ; then
+            echo "Error: whitespace formatting is invalid"
+            exit 1
+          fi
