@@ -14,7 +14,7 @@ public class AnimalController : MonoBehaviour
     private const float SPEED = 10;
     private Vector3 velocity = Vector3.zero;
         private Rigidbody rb;
-        private float radius;
+         private float radius;
     private bool inRange = false; 
 
     private const int MINWAIT = 4;
