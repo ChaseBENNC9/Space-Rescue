@@ -28,6 +28,8 @@ jobs:
           dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes
           echo "{VERIFY_WHITESPACE}={$?}" >> $GITHUB_OUTPUT
           echo $?
+          echo $VERIFY_WHITESPACE
+          echo VERIFY_WHITESPACE
         continue-on-error: true
           
       - name: format and commit the files
