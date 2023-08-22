@@ -26,7 +26,7 @@ jobs:
         id: verify_whitespace
         run: |
           dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes
-          echo "{VERIFY_WHITESPACE}={$?}" >> $GITHUB_OUTPUT
+          echo "VERIFY_WHITESPACE=$?" >> $GITHUB_OUTPUT
           echo $?
 
         continue-on-error: true
