@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class HudBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static HudBehaviour Instance;          
+    public static HudBehaviour Instance;
     public GameObject planetStatus, objectName, distFromPlayer, blackHolePlanetDist, planetLand; //The HUD Text Objects    
     public const int NAMINGVIOLATIONS = 5;
 
-    void Awake()   
-    {   
-            Instance = this;  
-        HideInfoPanel ();
-    } 
+    void Awake()
+    {
+        Instance = this;
+        HideInfoPanel();
+    }
 
 
     //Displays the Planet Info Panel wi    th information about the planet
