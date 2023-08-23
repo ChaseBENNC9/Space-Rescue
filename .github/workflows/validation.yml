@@ -43,6 +43,6 @@ jobs:
           git add .
           git config user.email "actions@github.com"
           git config user.name "Github Actions"
-          git commit -m "auto fix changes"
+          git commit -m "CI: Automatically formatted the Whitespace"
           git push
 
