@@ -12,7 +12,7 @@ public class HudBehaviour : MonoBehaviour
 
     void Awake()   
     {   
-            Instance = this;
+            Instance = this;  
         HideInfoPanel ();
     } 
 
