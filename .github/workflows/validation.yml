@@ -3,7 +3,7 @@ name: Format Whitespace
 
 on:
   push:
-    branches-ignore: [master, main]
+    branches-ignore: [master, main] #Formatting will not be checked on main because It should already be formatted and I dont want a commit to trigger the release workflow
 
 jobs:
   check-and-format-whitespace:
