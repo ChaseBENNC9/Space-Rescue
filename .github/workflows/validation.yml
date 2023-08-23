@@ -25,15 +25,16 @@ jobs:
       - name: check the whitespace of git diff
         id: verify_whitespace
         run: |
-          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes
-          echo "VERIFY_WHITESPACE=$?" >> $GITHUB_OUTPUT
+          echo "VERIFY_WHITESPACE=1" >> $GITHUB_OUTPUT
+          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes  
+          if [[ $? == 0 ]] ; then    
+              echo "VERIFY_WHITESPACE=0" >> $GITHUB_OUTPUT
+          fi
           echo $?
 
         continue-on-error: true
       - name: print whitespace output
-        env:
-          WHTESPCE: ${{ steps.verify_whitespace.outputs.VERIFY_WHITESPACE }}
-        run: echo $WHTESPCE
+        run: echo ${{ steps.verify_whitespace.outputs.VERIFY_WHITESPACE }}
           
       - name: format and commit the files
         if: ${{steps.verify_whitespace.outputs.VERIFY_WHITESPACE != 0}}
