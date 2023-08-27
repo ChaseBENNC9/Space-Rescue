@@ -14,7 +14,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           
       - name: Set up .NET #set up the .NET installation for the workflow
         uses: actions/setup-dotnet@v1
