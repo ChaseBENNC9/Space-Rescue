@@ -10,12 +10,12 @@ public class DropShipManager : MonoBehaviour
 {
     private const int NUMBERS = 2;
 
-                            public void OnTriggerStay(Collider other)
-    {        
+    public void OnTriggerStay(Collider other)
+    {
         if (other.gameObject.tag == "Player")
         {
-                                    PlanetManager.Instance.dropShipRange = true;
-        }                
+            PlanetManager.Instance.dropShipRange = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -23,7 +23,7 @@ public class DropShipManager : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             PlanetManager.Instance.dropShipRange = false;
-        } 
-    } 
+        }
+    }
 }
-                 
+
