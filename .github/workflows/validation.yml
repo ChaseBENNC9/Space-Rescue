@@ -24,11 +24,10 @@ jobs:
       - name: check the whitespace of git diff #Only Checks the Whitespace using the option --verify-no-changes and will determine whether theres files to format
         id: verify_whitespace
         run: |
-          echo "EVENT_COMMIT=${{github.event.before}}" >> $GITHUB_OUTPUT #Initially the VERIFY_WHITESPACE variable is set to 1 which in this case would mean there was an error and files need fixing
 
           if [[ ${{github.event.before}} == 0000000000000000000000000000000000000000 ]] ; then
             echo ${{github.event.after}}
-            echo ${{EVENT_COMMIT}}
+
           fi
           echo "VERIFY_WHITESPACE=1" >> $GITHUB_OUTPUT #Initially the VERIFY_WHITESPACE variable is set to 1 which in this case would mean there was an error and files need fixing
           dotnet format whitespace Space-Rescue.sln --include $( git diff ${{EVENT_COMMIT}} --name-only) --verify-no-changes  
