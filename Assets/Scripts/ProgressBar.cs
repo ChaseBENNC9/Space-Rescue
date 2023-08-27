@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;  
+using System.Collections.Generic;  
+using UnityEngine;                
 using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour
 {
@@ -13,11 +13,11 @@ public class ProgressBar : MonoBehaviour
     {
         progressBar = gameObject.GetComponent<RectTransform>();
         RectTransform b = gameObject.transform.parent.GetComponent<RectTransform>();
-        b.anchorMin = new Vector2(0,0);
+        b.anchorMin = new Vector2(0,0);     
         b.anchorMax = new Vector2(0,0);
         b.pivot = new Vector2(0,0);
         b.anchoredPosition = new Vector3(0,0,0);
-    }
+    }                
     // Update is called once per frame
     void Update()
     {     
