@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Collections.Generic; 
+using UnityEngine; 
 
-public class GravityBody : MonoBehaviour
+public class GravityBody : MonoBehaviour          
 {
-    public GravityAttractor attractor;
+    public GravityAttractor attractor;            
     private Transform myTransform;
     private Rigidbody rb;
     private GameObject planet;
