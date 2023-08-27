@@ -25,7 +25,7 @@ jobs:
         id: verify_whitespace
         run: |
           echo "VERIFY_WHITESPACE=1" >> $GITHUB_OUTPUT #Initially the VERIFY_WHITESPACE variable is set to 1 which in this case would mean there was an error and files need fixing
-          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.after}} oriign/main --name-only) --verify-no-changes  
+          dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.after}} origin/main --name-only) --verify-no-changes  
           if [[ $? == 0 ]] ; then #If the above command returns 0 there were no files that needed changing and the variable will be updated to 0   
               echo "VERIFY_WHITESPACE=0" >> $GITHUB_OUTPUT
           fi
