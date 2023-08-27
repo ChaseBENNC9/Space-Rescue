@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedEffect : MonoBehaviour
+public class SpeedEffect : MonoBehaviour 
 {
-    public float targetFOV = 90f; // The target FOV value when speeding up
-    public float transitionDuration = 1f; // The duration of the FOV transition
+        public     float targetFOV = 90f; // The tar get FOV value when speeding up
+        public float transitionDuration = 1f; // The duration of the FOV transition
     public bool boosters = false; // Flag to track if the speed-up effect is active
     private float originalFOV; // The original FOV value of the camera
     private float startFOV; //The FOV at the start of the effect
