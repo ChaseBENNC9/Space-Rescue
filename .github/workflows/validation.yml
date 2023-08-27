@@ -23,8 +23,9 @@ jobs:
           
       - name: check the whitespace of git diff #Only Checks the Whitespace using the option --verify-no-changes and will determine whether theres files to format
         id: verify_whitespace
-        if: ${{github.event.before != 0000000000000000000000000000000000000000}} #The first commit of the PR / Branch will be skipped
         run: |
+          echo ${{github.event.before}}
+          echo ${{github.event.after}} 
           echo "VERIFY_WHITESPACE=1" >> $GITHUB_OUTPUT #Initially the VERIFY_WHITESPACE variable is set to 1 which in this case would mean there was an error and files need fixing
           dotnet format whitespace Space-Rescue.sln --include $( git diff ${{github.event.before}} --name-only) --verify-no-changes  
           if [[ $? == 0 ]] ; then #If the above command returns 0 there were no files that needed changing and the variable will be updated to 0   
