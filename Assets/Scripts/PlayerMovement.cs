@@ -2,15 +2,15 @@
 // Author: Erika Stuart
 // Last Updated: 9/08/2023
 // Last Updated By: Palin Wiseman
-using System.Collections;
+    using System.Collections; 
 using System.Collections.Generic;
-using UnityEngine;
+    using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float SPEED = 20f;
-    private Rigidbody rb;
+    private Rigidbody rb; 
     private Vector3 moveAmo; 
     private Vector3 smoothMoveVel = Vector3.zero;
     private Vector3 direction;
