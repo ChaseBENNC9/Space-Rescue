@@ -25,7 +25,11 @@ jobs:
           key: Library-${{ matrix.projectPath }}
           restore-keys: |
             Library-
-      - uses: game-ci/unity-test-runner@v3.0.0
+      - name: print files directory
+        run: | 
+          ls Space-Rescue
+          ls Space-Rescue/Space-Rescue
+      - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
