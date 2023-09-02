@@ -27,8 +27,8 @@ jobs:
             Library-
       - name: print files directory
         run: | 
-          ls Space-Rescue
-          ls Space-Rescue/Space-Rescue
+          ls /home/runner/work/Space-Rescue/Space-Rescue
+          ls /home/runner/work/Space-Rescue/Space-Rescue/Space-Rescue
       - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
