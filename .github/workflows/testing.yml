@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - Space-Rescue
+          - /home/runner/work/Space-Rescue/Space-Rescue
         testMode:
           - editmode
     steps:
@@ -27,8 +27,7 @@ jobs:
             Library-
       - name: print files directory
         run: | 
-          ls /home/runner/work/Space-Rescue/Space-Rescue
-          ls /home/runner/work/Space-Rescue/Space-Rescue/Space-Rescue
+          ls ${{ matrix.projectPath }}
       - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
