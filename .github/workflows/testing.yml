@@ -7,7 +7,7 @@ on:
 jobs:
   testAllModes:
     name: Test in ${{ matrix.testMode }}
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -28,7 +28,7 @@ jobs:
       - name: print files directory
         run: | 
           ls ${{ matrix.projectPath }}
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v3.0.0
         id: tests
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
