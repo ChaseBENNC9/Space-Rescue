@@ -3,16 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Planet
-  - Black Hole
-  - Black Hole Warning
-  - Tooltip
-  - PlanetUI
-  - EnergyBarFull
-  - Animal
-  - AnimalFoV
-  - OnPlanetCollision
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -20,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Post-Processing
-  - whatIsGround
-  - 3DUI
-  - HeatDistortionEffect
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
