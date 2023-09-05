@@ -21,9 +21,10 @@ jobs:
           lfs: true
       - uses: actions/cache@v2
         with:
-          path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}
+          path: ./Library
+          key: Library-Space-Rescue-TargetPlatform
           restore-keys: |
+            Library-Space-Rescue-
             Library-
       - name: print files directory
         run: | 
