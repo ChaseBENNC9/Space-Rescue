@@ -1,6 +1,9 @@
 name: Automate Testing
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore: [main] #Formatting will not be checked on main because It should already be formatted and I dont want a commit to trigger the release workflow
+
 jobs:
   testAllModes:
     name: Test in ${{ matrix.testMode }}
@@ -30,20 +33,9 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: home/runner/work/Space-Rescue/Space-Rescue
           testMode: ${{ matrix.testMode }}
           artifactsPath: ${{ matrix.testMode }}-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: ${{ matrix.testMode }} Test Results
-          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: Test results for ${{ matrix.testMode }}
-          path: ${{ steps.tests.outputs.artifactsPath }}
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: Coverage results for ${{ matrix.testMode }}
-          path: ${{ steps.tests.outputs.coveragePath }}
+
     
