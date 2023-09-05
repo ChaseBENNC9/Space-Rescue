@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+using UnityEditor;
+using UnityEditor.SceneManagement;
 public class ShipMovementTest
 {
     public GameObject player;
-    
+
+    [SetUp]
+    public void Setup()
+    {
+        EditorSceneManager.OpenScene("Assets\\Scenes\\Main Scene.unity");
+    }
+
     //Testing that the player's tag is "Player"
     //Should return true
     [Test]
