@@ -1,4 +1,4 @@
-// Description: Handles player movement
+﻿// Description: Handles player movement
 // Author: Erika Stuart
 // Last Updated: 9/08/2023
 // Last Updated By: Palin Wiseman
@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveAmo;
     private Vector3 smoothMoveVel = Vector3.zero;
-        private Vector3 direction;
+    private Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
