@@ -32,7 +32,7 @@ jobs:
               uses: actions/cache@v3
               with:
                 path: Library
-                key: Library-Space-Rescue-TargetPlatform
+                key: Library-Space-Rescue-StandaloneWindows
                 restore-keys: |
                     Library-Space-Rescue-
                     Library-
