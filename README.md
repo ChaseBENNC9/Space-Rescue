@@ -3,7 +3,7 @@
 
 ![Clean screenshot](https://github.com/BIT-Studio-3/Space-Rescue/assets/104882337/bf3c350a-64be-41ba-9067-b7cd31710454)
 
-
+a
 Welcome to **Space Rescue**, an exciting space adventure game where you embark on a daring mission to save stranded animals from distant planets while racing against time and a looming black hole.
 
 ## Features
