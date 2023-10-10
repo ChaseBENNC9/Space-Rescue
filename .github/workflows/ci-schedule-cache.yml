@@ -24,6 +24,9 @@ jobs:
           restore-keys: |
               Library-Space-Rescue-
               Library-
+      - name: show disk info
+        run: df -h /
+
         # Build
       - name: Build Project #Builds the unity Project
         uses: game-ci/unity-builder@v2
