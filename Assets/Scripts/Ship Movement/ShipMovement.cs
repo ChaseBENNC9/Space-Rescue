@@ -20,13 +20,20 @@ public class ShipMovement : MonoBehaviour
     float speedtiltMultiAngle = 0.1f;
 
     //Thrusters - Set to private after testing is done and ideal speed is found
-    private float thrust = 2500f; //Amount of boost power
+    [SerializeField] private float thrust = 2500f; //Amount of boost power
     private float boostDuration; //Frames the boost can be active for
-    private float cap = 2500f; //Max amount of boost duration that can be held
-    private float recharge = .25f; //Amount recharged. .25 means you recharge at a quarter of the speed you use it
+    [SerializeField] private float cap = 2500f; //Max amount of boost duration that can be held
+    [SerializeField] private float recharge = .25f; //Amount recharged. .25 means you recharge at a quarter of the speed you use it
 
     private Vector3 initialVelocity;
     public Text speedText;
+
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip boostSound;
+
+    private float rechargeClipLength;
+    private float boostPercent;
 
     //Energy bars to edit
     public Image[] bars;
@@ -38,12 +45,16 @@ public class ShipMovement : MonoBehaviour
         spaceshipRB = GetComponent<Rigidbody>();
         ResetBoost(); //Sets boost to Cap
         initialVelocity = spaceshipRB.velocity;
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0)return; //This instantly returns from update when the game is paused
-
+        if(Time.timeScale == 0)
+        {
+            audioSource.Stop();
+            return; //This instantly returns from update when the game is paused
+        }
         verticalMove = Input.GetAxis("Vertical");
         horizontalMove = Input.GetAxis("Horizontal");
         tiltInput = Input.GetAxis("Roll");
@@ -57,6 +68,10 @@ public class ShipMovement : MonoBehaviour
         }
         else //If not boosting
         {
+            if (audioSource.clip == boostSound)
+            {
+                audioSource.Stop();
+            }
             RechargeBoost();
         }
 
@@ -70,11 +85,14 @@ public class ShipMovement : MonoBehaviour
                 SpeedEffect.Instance.SpeedControl(true);
                 spaceshipRB.AddRelativeForce(Vector3.forward * thrust);
                 boostDuration -= 1;
+                audioSource.loop = true;
+                SoundEffectsSetting.SoundSetting(audioSource, boostSound);
                 //Visual boost bar reducing
             }
             else //If boosting but empty
             {
                 SpeedEffect.Instance.SpeedControl(false);
+                audioSource.Stop();
                 //Effect for empty boost
             }
     }
@@ -82,10 +100,14 @@ public class ShipMovement : MonoBehaviour
     private void RechargeBoost() //Recharging boost
     {
         SpeedEffect.Instance.SpeedControl(false);
-            if (boostDuration < cap)
+        if (boostDuration < cap)
+        {
+            boostDuration += recharge; //Slowly refilling boost
+            if (boostDuration >= cap) //If boost is over cap, set to cap
             {
-                boostDuration += recharge; //Slowly refilling boost
+                boostDuration = cap;
             }
+        }
     }
 
     public void ResetBoost() //Sets the boost to max
