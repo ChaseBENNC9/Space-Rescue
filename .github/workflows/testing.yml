@@ -21,7 +21,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ./Library
-          key: Library-Space-Rescue-TargetStandaloneWindows
+          key: Library-Space-Rescue-StandaloneWindows
           restore-keys: |
             Library-Space-Rescue-
             Library-
