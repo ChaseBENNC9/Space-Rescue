@@ -10,7 +10,7 @@ on:
 jobs:
     build-project:
         name: Build my Project
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             - name: Check if the pull request was merged #This Step Is Checking whether the closed PR was merged into main and not just closed
               id: check_merge
